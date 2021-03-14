@@ -15,6 +15,7 @@
 from unittest import mock
 
 import pytest
+import torch
 from torch import optim
 
 from pytorch_lightning import Callback, Trainer
@@ -111,3 +112,13 @@ def test_v1_5_0_model_checkpoint_period(tmpdir):
         ModelCheckpoint(dirpath=tmpdir)
     with pytest.deprecated_call(match="is deprecated in v1.3 and will be removed in v1.5"):
         ModelCheckpoint(dirpath=tmpdir, period=1)
+
+
+def test_v1_5_0_deprecated_metric_accuracy():
+    from pytorch_lightning.metrics import Accuracy
+    with pytest.deprecated_call(match='It will be removed in v1.5.0'):
+        Accuracy()
+
+    from pytorch_lightning.metrics.functional.accuracy import accuracy
+    with pytest.deprecated_call(match='It will be removed in v1.5.0'):
+        accuracy(preds=torch.tensor([0, 1]), target=torch.tensor([0, 1]))
