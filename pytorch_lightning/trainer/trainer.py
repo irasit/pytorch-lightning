@@ -922,9 +922,7 @@ class Trainer(
 
         # If you supply a datamodule you can't supply test_dataloaders
         if test_dataloaders and datamodule:
-            raise MisconfigurationException(
-                'You cannot pass both `trainer.test(test_dataloaders=..., datamodule=...)`'
-            )
+            raise MisconfigurationException('You cannot pass both `trainer.test(test_dataloaders=..., datamodule=...)`')
 
         model_provided = model is not None
         model = model or self.lightning_module
