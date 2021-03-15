@@ -18,7 +18,10 @@ jobs:
         python-version: [3.6, 3.7, 3.8, 3.9]
         requires: ['minimal', 'latest']
         exclude:
-          # # todo: segmentation fault for minimal and hanging for latest
+          - python-version: 3.9
+            os: windows-2019
+            requires: 'minimal'
+          # todo: segmentation fault for minimal and hanging for latest
           - python-version: 3.8
             os: ubuntu-18.04
 
